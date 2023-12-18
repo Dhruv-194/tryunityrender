@@ -13,10 +13,6 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   var buttonText  = isOpen ? "End Game" : "Start Game";
-  // function toggle(){
-  //   setIsOpen((isOpen)=> !isOpen);
-    
-  // }
 
   return (
 
