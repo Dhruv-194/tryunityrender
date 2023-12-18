@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Unity, useUnityContext } from "react-unity-webgl";
+
 
 function App() {
+
+  const { unityProvider } = new useUnityContext({
+    loaderUrl: "/Build/Build.loader.js",
+    dataUrl: "/Build/Build.data",
+    frameworkUrl: "/Build/Build.framework.js",
+    codeUrl: "/Build/Build.wasm",
+  });
+
+  const [isOpen, setIsOpen] = useState(false);
+  var buttonText  = isOpen ? "End Game" : "Start Game";
+  // function toggle(){
+  //   setIsOpen((isOpen)=> !isOpen);
+    
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="Game">
+      {/* {isOpen ? <div><Unity unityProvider={unityProvider} style={{ width: 800, height: 600, visibility: isOpen ? "visible" : "hidden"}} /></div> : <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQoqRS3IkWImlGbaAgyj0VhRPyno8LAVhlEmeG9Lu37Q&s"></img></div> } */}
+      <Unity unityProvider={unityProvider} style={{ width: 800, height: 600, visibility: isOpen ? "visible" : "hidden"}} />
+        <button onClick={()=>setIsOpen(!isOpen)}>{buttonText}</button>
     </div>
+    
   );
 }
 
